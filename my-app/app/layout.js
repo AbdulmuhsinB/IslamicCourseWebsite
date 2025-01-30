@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,11 +20,43 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className="bg-gray-100 text-gray-900">
+        {/* Navbar */}
+        <nav className="bg-[#ADD8E6] text-black py-4 px-6 shadow-md">
+          <div className="max-w-7xl mx-auto flex justify-between items-center">
+            {/* Logo */}
+            <a href="/">
+              <Image 
+                src="/Assets/default-logo.png" 
+                alt="Logo" 
+                width={120} 
+                height={50} 
+                className="h-12 w-auto"
+                priority 
+              />
+            </a>
+
+            {/* Navigation Links */}
+            <ul className="flex space-x-6">
+              <li><a href="/" className="hover:text-[#5ac4e7]">Home</a></li>
+              <li><a href="/about" className="hover:text-[#5ac4e7]">About Us</a></li>
+              <li><a href="/courses" className="hover:text-[#5ac4e7]">Courses</a></li>
+              <li><a href="/contact" className="hover:text-[#5ac4e7]">Contact</a></li>
+              <li><a href="/sighnup" className="hover:text-[#5ac4e7]">Sign Up</a></li>
+              <li><a href="/login" className="hover:text-[#5ac4e7]">Login</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        {/* Page Content */}
+        <main>{children}</main>
+
+        {/* Footer */}
+        <footer className="bg-[#ADD8E6] text-black text-center py-4 mt-10">
+          <p>&copy; {new Date().getFullYear()} My Website. All rights reserved.</p>
+        </footer>
       </body>
     </html>
   );
 }
+
